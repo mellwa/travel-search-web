@@ -3,7 +3,7 @@ const http = require('http');
 
 const host = '127.0.0.1';
 const port = process.env.PORT || 3000;
-const dist_dir = __dirname+'/hw8front/dist';
+const dist_dir = __dirname+'/front/dist';
 
 const express = require("express");
 let app = express();
