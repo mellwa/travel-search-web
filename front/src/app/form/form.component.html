@@ -1,0 +1,52 @@
+
+<form id="search-box-entity" class="container" #searchForm="ngForm" (keydown.enter)="$event.preventDefault()">
+  <div id="form-title-row" class="container">
+    <h5 id="title" >Travel and Entertainment Search</h5>
+  </div>
+  <div class="row form-group required">
+    <label class="label col-lg-3 form-title">Keyword</label>
+    <div class="col-lg-8 element-container">
+      <input id="keyword-input" name="keyword" class="form-control"
+             [ngClass]="{'is-invalid':keywordValidation.invalid&&keywordValidation.touched}"
+             [(ngModel)]="form.keyword" required [pattern]="'^(?=.*\\S).+$'" #keywordValidation="ngModel"/>
+      <div *ngIf="keywordValidation.invalid&&keywordValidation.touched" class="invalid-msg">Please enter a keyword</div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <label class="label col-lg-3 form-title">Category</label>
+    <select id="category-select" name="category" class="col-lg-5" [(ngModel)]="form.category" #category_select>
+      <option *ngFor="let element of category.list()" [value]="element">{{element}}</option>
+    </select>
+  </div>
+  <div class="row form-group">
+    <label class="label col-lg-3 form-title">Distance (miles)</label>
+    <input id="distance-input" class="col-lg-5 form-control" name="distance" placeholder="10" autocomplete="1000" [(ngModel)]="distance" />
+  </div>
+  <div class="form-group required row">
+    <label class="col-lg-3 label form-title">From</label>
+    <div class="col-lg-8" id="radio-group-container">
+      <div>
+        <input id="radio-here" type="radio" name="location_select" [checked]="radio_here" (click)="selectCurrentLocation()"/>
+        <label class="radio-label">{{here}}</label>
+      </div>
+      <div>
+        <input id="radio-location" type="radio" name="location_select" [checked]="!radio_here" (click)="selectSpecifyLocation()"/>
+        <label class="radio-label">{{place}}</label>
+      </div>
+      <div id="location-input-container">
+        <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+               id="location-input" class="form-control" name="location" placeholder="Enter a location"
+               [disabled]="locationInputStatus()" [(ngModel)]="specified_location" required [pattern]="'^(?=.*\\S).+$'"
+               #specified_address="ngModel" [ngClass]="{'is-invalid':specified_address.invalid&&specified_address.touched}">
+        <div *ngIf="specified_address.invalid&&specified_address.touched" class="invalid-msg">Please enter a location</div>
+      </div>
+    </div>
+  </div>
+  <div id="search-btn-group" class="form-group row">
+    <button id="submit-btn" class="btn btn-primary" name='search-button'(click)="formSubmit()" [disabled]="!searchForm.valid||fetchingData">
+      <i class="fa fa-search" aria-hidden="true"></i> Search
+    </button>
+    <input id="clear-btn" class="btn" name='clear-button' type="button" value="Clear" (click)="clearForm()"/>
+  </div>
+</form>
+

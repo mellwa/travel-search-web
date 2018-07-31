@@ -1,0 +1,52 @@
+#pegman-img {
+  height: 40px;
+  width: 40px;
+}
+
+#map-container{
+  margin: 20px 0 100px 0;
+}
+
+#map-form-container {
+  padding: 0 0 0 0;
+}
+
+#map-form {
+  padding: 0 0 0 0;
+  margin: 0 0 10px 0;
+}
+
+.map-input {
+  display: block;
+}
+
+.map-input-label {
+  text-align: left;
+}
+
+.map-input-label-col {
+  text-align: left;
+}
+
+#get-direction-btn {
+  display: block;
+}
+
+#street-view-btn-container {
+  text-align: left;
+  padding: 0 0 0 0;
+  margin: 10px 0 10px 0;
+}
+
+#street-view-btn {
+  border: solid lightgrey 2px;
+  padding: 0 0 0 0;
+}
+
+#map-display {
+  height: 400px;
+}
+
+#routes-details {
+  text-align: left;
+}

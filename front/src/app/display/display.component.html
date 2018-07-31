@@ -1,0 +1,59 @@
+
+<div id="nav-container" class="container">
+  <ngb-tabset type="pills" justify="center" #tabs>
+    <ngb-tab  id="result-tab">
+      <ng-template ngbTabTitle>
+        <div class="tab-title" (click)="handleTabChangeClick()" >Results</div>
+      </ng-template>
+      <ng-template *ngIf="show_display&&!error"  ngbTabContent>
+        <div class="container"
+             [@resultTableState] = "tableState"
+             [hidden]="show_details" >
+          <app-result-table [data]="table_data"
+                            [current_detail_id]="current_detail_id"
+                            (details_query_event)="fetchDetailsAndSwitch($event)"
+                            (switch_to_current_detail)="switchToCurrentDetail()">
+          </app-result-table>
+        </div>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab id="favorite-tab">
+      <ng-template ngbTabTitle>
+        <div class="tab-title" (click)="handleTabChangeClick()" >Favorites</div>
+      </ng-template>
+      <ng-template *ngIf="!destroy_favorite&&show_display&&!error" ngbTabContent >
+        <div class="container"
+             [@resultTableState] = "tableState"
+             [hidden]="show_details">
+          <app-favorite-table (details_query_event)="fetchDetailsAndSwitch($event)"
+                              (switch_to_current_detail)="switchToCurrentDetail()"
+                              [current_detail_id]="current_detail_id">
+          </app-favorite-table>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+  <!--[@detailState]="details_state"-->
+  <div [@detailState]="detailsState"
+       *ngIf="!destroy_details&&show_display" id="result-details-container"
+       [hidden]="!show_details" >
+    <app-details (hide_details)="hideDetails()"
+                 [details_data]="details_data"
+                 (favorite_choose)="handleFavoriteClickById($event)"></app-details>
+  </div>
+  <div *ngIf="show_progress_bar" id="progress-container" class="container">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated"
+           role="progressbar"
+           aria-valuenow="75"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           style="width: 50%"></div>
+    </div>
+  </div>
+  <div *ngIf="error" id="data-fetch-error-container">
+    <app-message [category]="'fetch-failed'"></app-message>
+  </div>
+</div>
+
+<div id="google-map-display" #google_map_section></div>

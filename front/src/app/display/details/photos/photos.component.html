@@ -1,0 +1,33 @@
+<div id="photos-container" class="container">
+  <div *ngIf="photos&&photos.length > 0" class="row justify-content-between">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 photo-col">
+      <div *ngFor="let photo_url of photos; index as i" [attr.data-index]='i'>
+        <a *ngIf="i%4==0" target="_blank" [href]="photo_url"><img [src]="photo_url" class="card-img photo-image" alt="image"></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 photo-col">
+      <div *ngFor="let photo_url of photos; index as i" [attr.data-index]='i'>
+        <a *ngIf="i%4==1" target="_blank" [href]="photo_url"><img [src]="photo_url" class="card-img photo-image" alt="image"></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 photo-col">
+      <div *ngFor="let photo_url of photos; index as i" [attr.data-index]='i'>
+        <a *ngIf="i%4==2" target="_blank" [href]="photo_url"><img [src]="photo_url" class="card-img photo-image" alt="image"></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 photo-col">
+      <div *ngFor="let photo_url of photos; index as i" [attr.data-index]='i'>
+        <a *ngIf="i%4==3" target="_blank" [href]="photo_url"><img [src]="photo_url" class="card-img photo-image" alt="image"></a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!photos || photos.length == 0" id="photos-no-result-container">
+    <app-message [category]="'no-record'"></app-message>
+  </div>
+</div>
+
+<!--<div *ngIf="photos&&photos.length > 0" class="card-columns mb-4">-->
+  <!--<div *ngFor="let photo_url of photos" class="card">-->
+    <!--<a target="_blank" [href]="photo_url"><img [src]="photo_url" class="card-img photo-image" alt="image"></a>-->
+  <!--</div>-->
+<!--</div>-->

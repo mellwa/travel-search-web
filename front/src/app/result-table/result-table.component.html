@@ -1,0 +1,14 @@
+<div id="result-table" class="container">
+  <div id="result-table-container" *ngIf="show_table">
+    <app-table [table_data]="table_data"
+               [show_prev_btn]="showPrevBtn()"
+               [show_next_btn]="showNextBtn()"
+               [current_details_id]="current_detail_id"
+               (prev_event)="toPrevPage()"
+               (next_event)="toNextPage()"
+               (details_query_event)="handleDetailsQueryEvent($event)"
+               (switch_to_current_detail)="handleSwitch2CurrentDetail()">
+    </app-table>
+  </div>
+  <app-message *ngIf="no_record" [category]="'no-record'"></app-message>
+</div>

@@ -1,0 +1,25 @@
+#nav-container {
+  padding: 25px 0 0 0;
+  margin: auto;
+  min-height: 300px;
+}
+
+#progress-container {
+  margin-top: 15vh;
+}
+
+#data-fetch-error-container{
+  min-height: 300px;
+  margin-top: 150px;
+}
+
+#favorite-tab, #result-tab {
+  padding: 0 0 0 0;
+}
+
+.tab-title {
+  margin: -.5rem -1rem;
+  padding: .5rem 1rem;
+}
+
+

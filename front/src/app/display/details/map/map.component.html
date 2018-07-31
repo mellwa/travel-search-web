@@ -1,0 +1,39 @@
+<div id="map-container" class="container">
+  <form id='map-form' class="container" (keydown.enter)="$event.preventDefault()"  >
+    <div id='map-form-container' class="form-row container">
+      <div class="col-lg-3 map-input-label-col">
+        <label class="map-input-label">From</label>
+        <input ngx-google-places-autocomplete class="map-input form-control" name="from"
+               (onAddressChange)="handleAddressChange($event)"
+               (ngModelChange)="handleInputChange($event)"
+               [(ngModel)]="map_model.from">
+      </div>
+      <div class="col-lg-5 map-input-label-col">
+        <label class="map-input-label">To</label>
+        <input class="map-input form-control" name="to" [(ngModel)]="map_model.to" disabled>
+      </div>
+      <div class="col-lg-2 map-input-label-col">
+        <label class="map-input-label">Travel Mode</label>
+        <select class="custom-select" name="travel_modes_select" [(ngModel)]="map_model.current_travel_mode">
+          <option selected [value]="travel_modes[0]">Driving</option>
+          <option [value]="travel_modes[1]">Bicycling</option>
+          <option [value]="travel_modes[2]">Transit</option>
+          <option [value]="travel_modes[3]">Walking</option>
+        </select>
+      </div>
+      <div class="col-lg-2 map-input-label-col">
+        <label>&nbsp;</label>
+        <button id="get-direction-btn" class="btn btn-primary"
+                (click)="getDirections()"
+                [disabled]="map_model.get_direction_btn_disabled">Get Directions</button>
+      </div>
+    </div>
+  </form>
+  <div id="street-view-btn-container" class="container">
+    <button id="street-view-btn" class="btn" (click)="streetViewBtnHandler()"><img id="pegman-img" [src]="street_view.url"></button>
+  </div>
+  <div id="map-display" #google_map_display></div>
+  <div id="routes-display" class="container">
+    <div id="routes-details" #routes_details></div>
+  </div>
+</div>

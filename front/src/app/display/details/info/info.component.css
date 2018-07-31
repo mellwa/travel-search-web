@@ -1,0 +1,29 @@
+#details-info-container {
+  margin: 20px 0px 100px 0px
+}
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  color: #d3d3d3;
+}
+.full {
+  color: #e66119;
+}
+.half {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  color: #e66119;
+}
+
+#daily-hours-link {
+  text-decoration: underline;
+}
+th, td {
+  text-align: left;
+}
+
+#info-table {
+  min-width: 700px;
+}

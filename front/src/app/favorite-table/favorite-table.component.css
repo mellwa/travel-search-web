@@ -1,0 +1,13 @@
+.btn {
+  border: lightgray solid 2px;
+}
+
+#favorite-prev-btn {
+  margin: 10px 10px 10px 10px;
+  min-width: 90px;
+}
+
+#favorite-next-btn {
+  margin: 10px 10px 10px 10px;
+  min-width: 90px;
+}

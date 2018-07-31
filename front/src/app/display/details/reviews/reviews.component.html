@@ -1,0 +1,53 @@
+<div id="reviews-container" class="container">
+  <div id="dropdown-container" class="container">
+    <div id="dropdown-inner-container" class="container">
+      <div id="review-dropdown" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" id="review-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{model.reviews.current}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="review-dropdown-btn">
+          <button *ngFor="let option of model.reviews.options" class="dropdown-item" (click)="reviewsChangeHandler(option)">
+            {{option}}
+          </button>
+        </div>
+      </div>
+      <div id="sort-dropdown" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" id="sort-dropdown-btn" data-toggle="dropdown" aria-expanded="false">
+          {{model.sort.current}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="sort-dropdown-btn">
+          <button *ngFor="let option of model.sort.options" class="dropdown-item" (click)="sortChangeHandler(option)">
+            {{option}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="reviews-content-container" class="container" [@reviews_state]="review_state">
+    <div *ngFor="let author of model.current_reviews" class="review-element row">
+      <div class="col-lg-1 col-md-2 col-sm-3 col-3 col-xl-1">
+        <a *ngIf="author.author_url&&author.author_url.trim()&&author.profile_url&&author.profile_url.trim()"
+           [href]="author.author_url" target="_blank">
+          <img *ngIf="author.profile_url&&author.profile_url.trim()"
+               class="author-profile"
+               [src]="author.profile_url"></a>
+      </div>
+      <div class="col-lg-11 col-md-10 col-sm-9 col-9 col-xl-11">
+        <a class="author-name" [href]="author.author_url" target="_blank">{{author.author_name}}</a>
+        <div class="author-rating">
+          <ng-template #t let-fill="fill">
+              <span *ngIf="fill > 0" class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+              </span>
+          </ng-template>
+        </div>
+        <ngb-rating [(rate)]="author.rating" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+        <p *ngIf="author.date&&author.date.trim()" class="author-date">{{author.date}}</p>
+        <p *ngIf="author.text&&author.text.trim()" class="author-text">{{author.text}}</p>
+      </div>
+    </div>
+    <div *ngIf="!model || !model.current_reviews || model.current_reviews.length == 0" id="reviews-no-result-container">
+      <app-message [category]="'no-record'"></app-message>
+    </div>
+  </div>
+</div>

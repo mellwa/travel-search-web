@@ -1,0 +1,8 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <app-form (sendData)="nearByData($event)" (clear)="clearDisplay()"></app-form>
+  <app-display *ngIf="!destroy_display" [data]="form_data" ></app-display>
+  <!--<a [routerLink]="[{outlets:{main:['a']}}]">table</a>-->
+  <!--<button type="button" [routerLink]="[{outlets:{main:null}}]">close table</button>-->
+</div>
+

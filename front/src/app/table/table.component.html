@@ -1,0 +1,52 @@
+<div *ngIf="table_data&&table_data.length > 0 && !error" id="table-outer-container" class="container">
+  <button id="details-btn" class="btn" (click)="showCurrentDetail()" [disabled]="!current_details_id">
+    Details <i class="fa fa-chevron-right"></i>
+  </button>
+  <div id="table-container" class="table-responsive">
+    {{title}}
+    <table id="table-entity" class="table" >
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Favorite</th>
+        <th scope="col">Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of table_data; index as i" [attr.data-index]="i"
+          class="place-row"
+          [ngClass]="{'hightlight-row': current_details_id == data['place_id']}">
+        <th scope="row" >{{i+1}}</th>
+        <td><img [src]="data['category']"/></td>
+        <td>{{data['name']}}</td>
+        <td>{{data['address']}}</td>
+        <td>
+          <button *ngIf="!favorite" class="btn favorite-btn" (click)="handleFavoriteClick(data)">
+            <i *ngIf="!ifDataIsFavorite(data)" class="fa fa-star-o not-favorite-btn-icon"></i>
+            <i *ngIf="ifDataIsFavorite(data)" class="fa fa-star favorite-btn-icon"></i>
+          </button>
+          <button *ngIf="favorite" class="btn remove-favorite-btn" (click)="removeFavorite(data['place_id'])">
+            <i class="fa fa-trash remove-favorite-btn-icon"></i>
+          </button>
+        </td>
+        <td><button class="btn details-btn" (click)="showDetails(data['name'], data['place_id'], data['location'])">
+          <i class="fa fa-chevron-right"></i></button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="page-btn-container">
+    <button *ngIf="show_prev_btn" id="result-prev-btn" class="btn" (click)="handlePrevClick()">Previous</button>
+    <button *ngIf="show_next_btn" id="result-next-btn" class="btn" (click)="handleNextClick()">Next</button>
+  </div>
+</div>
+<div id="warning-message-container" *ngIf="(!table_data || table_data.length == 0)&&!error">
+  <app-message [category]="'no-record'"></app-message>
+</div>
+<div id="error-message-container" *ngIf="error">
+  <app-message [category]="'customized'" [message]="'Error occurs on data fetching. You probably clicked \'Next\' too frequently'"></app-message>
+</div>
+

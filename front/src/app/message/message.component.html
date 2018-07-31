@@ -1,0 +1,4 @@
+
+<div *ngIf="category == 'no-record'" class="alert alert-warning exception-massage" role="alert">No records.</div>
+<div *ngIf="category == 'fetch-failed'" class="alert alert-danger exception-massage" role="alert">Failed to get search results.</div>
+<div *ngIf="category == 'customized'" class="alert alert-danger exception-massage" role="alert">{{message}}</div>

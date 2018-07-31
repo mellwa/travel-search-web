@@ -1,0 +1,22 @@
+.card-columns {
+  column-count: 4;
+}
+
+#photos-container {
+  margin: 30px 0 200px 0;
+  min-height: 300px;
+}
+
+.photo-image {
+  padding: 5px 5px 5px 5px;
+  border: solid lightgrey 1px;
+  margin-bottom: 10px;
+}
+
+#photos-no-result-container{
+  margin-top: 140px;
+}
+
+.photo-col {
+  padding: 0 0 0 10px;
+}

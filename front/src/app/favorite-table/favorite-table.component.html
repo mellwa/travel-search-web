@@ -1,0 +1,14 @@
+
+<div class="container">
+  <app-table [favorite]="true"
+             [current_details_id]="current_detail_id"
+             [show_next_btn]="isThereNextPage()"
+             [show_prev_btn]="isTherePrePage()"
+             [table_data]="table_data"
+             (prev_event)="toPrePage()"
+             (next_event)="toNextPage()"
+             (remove_favorite_event)="remove_favorite_by_id($event)"
+             (details_query_event)="handleDetailsQueryEvent($event)"
+             (switch_to_current_detail)="handleSwitch2CurrentDetail()">
+  </app-table>
+</div>
